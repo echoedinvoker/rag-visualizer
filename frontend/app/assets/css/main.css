@@ -1,0 +1,119 @@
+/* ==============================================
+   Design System — RAG Visualizer
+   Based on: UI 樣式優化技巧 MOC
+   ============================================== */
+
+:root {
+  /* --- Color: Saturated neutrals (slate family, cool-toned) --- */
+  /* 色彩系統要飽和中性色與完整色階: 全站統一 slate 色系 */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* --- Brand colors with 5 shades each --- */
+  --primary-50: #f3f1ff;
+  --primary-100: #ebe5ff;
+  --primary-200: #d4ccff;
+  --primary-400: #8b7cf7;
+  --primary: #6C5CE7;
+  --primary-600: #5a47d6;
+  --primary-700: #4735b8;
+
+  --success-50: #ecfdf5;
+  --success: #00B894;
+  --success-700: #047857;
+
+  --warning-50: #fffbeb;
+  --warning: #FDCB6E;
+  --warning-700: #b45309;
+
+  --error-50: #fef2f2;
+  --error: #FF6B6B;
+  --error-700: #b91c1c;
+
+  /* --- Semantic tokens --- */
+  --color-bg: var(--slate-50);
+  --color-bg-card: #ffffff;
+  --color-bg-well: var(--slate-100);   /* 深度與層次: 凹陷區域用略暗背景 */
+  --color-text: var(--slate-800);       /* 排版: body 用深灰非純黑 */
+  --color-text-secondary: var(--slate-500);
+  --color-text-muted: var(--slate-400);
+  --color-border: hsl(215 25% 15% / 0.08);  /* 半透明外框: ring gray-950 low opacity */
+
+  /* --- Layered shadow tokens (陰影分層模擬真實光影) --- */
+  --shadow-sm:
+    0 1px 1px hsl(215 25% 15% / 0.04),
+    0 2px 4px hsl(215 25% 15% / 0.04);
+  --shadow-md:
+    0 1px 2px hsl(215 25% 15% / 0.05),
+    0 2px 4px hsl(215 25% 15% / 0.05),
+    0 4px 8px hsl(215 25% 15% / 0.04);
+  --shadow-lg:
+    0 1px 2px hsl(215 25% 15% / 0.04),
+    0 4px 8px hsl(215 25% 15% / 0.04),
+    0 8px 16px hsl(215 25% 15% / 0.04),
+    0 16px 32px hsl(215 25% 15% / 0.03);
+
+  /* --- Spacing scale (間距系統: 明確跳躍) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* --- Radius (同心圓角: 外層 2x 內層) --- */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;   /* Outer container when inner uses --radius */
+  --radius-node: 14px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Body typography (排版微調) --- */
+body {
+  font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Scrollbar (質感一致性) --- */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--slate-200); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate-300); }
+
+/* --- Ant Design overrides --- */
+
+/* 按鈕層級: primary 用品牌色，secondary 用淺色底 */
+.ant-input-search .ant-btn-primary {
+  border-radius: 0 var(--radius) var(--radius) 0 !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;  /* 全大寫小文字: 加寬字距 */
+}
+
+/* Tags: 淺色底取代實色 */
+.ant-tag {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600;
+  font-size: 12px !important;
+  border: none !important;
+}

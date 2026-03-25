@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "RAG Visualizer",
+    "subtitle": "即時視覺化 Agentic RAG 決策流程"
+  },
+  "research": {
+    "placeholder": "輸入研究主題...",
+    "start": "開始研究",
+    "abort": "中斷研究",
+    "examples": "快速範例："
+  },
+  "graph": {
+    "router": "路由器",
+    "retriever": "檢索器",
+    "web_search": "網路搜尋",
+    "grader": "文件評分",
+    "generator": "生成器",
+    "hallucination_checker": "幻覺檢查",
+    "relevance_checker": "相關性檢查",
+    "report_builder": "報告產出"
+  },
+  "log": {
+    "title": "執行日誌",
+    "routing_vector": "路由到向量搜尋",
+    "routing_web": "路由到網路搜尋",
+    "retrieving": "檢索到 {count} 篇文件",
+    "grading": "{passed}/{total} 篇通過品質篩選",
+    "grading_fallback": "全部不相關，轉向網路搜尋",
+    "generating": "正在生成答案...",
+    "generated": "答案生成完成",
+    "hallucination_pass": "幻覺檢查通過 — 答案有根據",
+    "hallucination_fail": "偵測到幻覺，重新生成",
+    "relevance_pass": "相關性檢查通過 — 答案回答了問題",
+    "relevance_fail": "答案未回答問題，補充搜尋",
+    "web_searching": "正在搜尋網路...",
+    "web_found": "找到 {count} 筆結果",
+    "report_done": "報告產出完成",
+    "retry": "重試第 {attempt} 次：{reason}",
+    "disconnected": "連線中斷",
+    "reconnect": "重新連線"
+  },
+  "report": {
+    "title": "研究報告",
+    "copy": "複製報告",
+    "copied": "已複製！",
+    "sources": "引用來源"
+  }
+}

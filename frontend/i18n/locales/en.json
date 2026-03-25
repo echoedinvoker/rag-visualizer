@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "RAG Visualizer",
+    "subtitle": "Real-time Agentic RAG Decision Visualization"
+  },
+  "research": {
+    "placeholder": "Enter a research topic...",
+    "start": "Start Research",
+    "abort": "Abort",
+    "examples": "Quick examples:"
+  },
+  "graph": {
+    "router": "Router",
+    "retriever": "Retriever",
+    "web_search": "Web Search",
+    "grader": "Doc Grader",
+    "generator": "Generator",
+    "hallucination_checker": "Hallucination Check",
+    "relevance_checker": "Relevance Check",
+    "report_builder": "Report Builder"
+  },
+  "log": {
+    "title": "Execution Log",
+    "routing_vector": "Routed to vector store",
+    "routing_web": "Routed to web search",
+    "retrieving": "Retrieved {count} documents",
+    "grading": "{passed}/{total} passed quality check",
+    "grading_fallback": "All irrelevant — falling back to web search",
+    "generating": "Generating answer...",
+    "generated": "Answer generated",
+    "hallucination_pass": "Hallucination check passed — answer is grounded",
+    "hallucination_fail": "Hallucination detected — regenerating",
+    "relevance_pass": "Relevance check passed — answer addresses the question",
+    "relevance_fail": "Answer doesn't address question — supplementing search",
+    "web_searching": "Searching the web...",
+    "web_found": "Found {count} results",
+    "report_done": "Report generated",
+    "retry": "Retry #{attempt}: {reason}",
+    "disconnected": "Connection lost",
+    "reconnect": "Reconnect"
+  },
+  "report": {
+    "title": "Research Report",
+    "copy": "Copy Report",
+    "copied": "Copied!",
+    "sources": "Sources"
+  }
+}

@@ -1,0 +1,45 @@
+# fly.toml app configuration file generated for rag-visualizer-api on 2026-03-25T18:40:02+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'rag-visualizer-api'
+primary_region = 'nrt'
+
+[build]
+
+[env]
+  ALLOWED_ORIGINS = 'https://rag-visualizer-cty.pages.dev,https://rag-visualizer.pages.dev,http://localhost:3000'
+  CHROMA_PERSIST_DIR = '/data/chroma_db'
+
+[[mounts]]
+  source = 'chroma_data'
+  destination = '/data/chroma_db'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = 'connections'
+    hard_limit = 25
+    soft_limit = 20
+
+[checks]
+  [checks.health]
+    port = 8080
+    type = 'http'
+    interval = '30s'
+    timeout = '10s'
+    grace_period = '2m0s'
+    method = 'GET'
+    path = '/api/health'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
