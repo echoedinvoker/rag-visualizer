@@ -30,6 +30,18 @@ watch(isRunning, (running) => {
   mode.value = running ? 'running' : 'editing'
 })
 
+// Load default template on mount
+onMounted(async () => {
+  const runtimeConfig = useRuntimeConfig()
+  try {
+    const detail = await $fetch<{ config: GraphConfig }>(
+      `${runtimeConfig.public.apiBase}/api/templates/full-agentic`,
+    )
+    loadGraphConfig(detail.config)
+    nextTick(() => applyAutoLayout())
+  } catch {}
+})
+
 // Selected node for config panel
 const selectedNodeId = ref<string | null>(null)
 const selectedNode = computed(() => {
