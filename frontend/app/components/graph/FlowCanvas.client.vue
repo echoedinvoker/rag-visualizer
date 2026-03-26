@@ -18,6 +18,10 @@ const props = defineProps<{
   mode?: 'editing' | 'running'
 }>()
 
+const emit = defineEmits<{
+  'node-click': [event: MouseEvent, node: any]
+}>()
+
 const isEditing = computed(() => props.mode !== 'running')
 
 const { onDragOver, onDrop, isValidConnection, onConnect } = useGraphEditor()
@@ -43,6 +47,7 @@ const { onDragOver, onDrop, isValidConnection, onConnect } = useGraphEditor()
       :is-valid-connection="isValidConnection"
       fit-view-on-init
       @connect="onConnect"
+      @node-click="(event: MouseEvent, node: any) => emit('node-click', event, node)"
     >
       <template #node-custom="nodeProps">
         <CustomNode :data="nodeProps.data" />

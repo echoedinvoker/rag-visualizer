@@ -127,7 +127,7 @@ function handleClear() {
       <!-- Center: Toolbar + Canvas + Log -->
       <div class="center-col">
         <a-card :bordered="false" class="card graph-card">
-          <GraphGraphToolbar
+          <GraphToolbar
             :disabled="isRunning"
             @clear="handleClear"
             @auto-layout="handleAutoLayout"
