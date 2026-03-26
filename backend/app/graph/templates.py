@@ -19,7 +19,7 @@ TEMPLATES: dict[str, dict] = {
                 },
                 "retriever_1": {
                     "type": "retriever",
-                    "config": {"knowledge_base": "langchain-docs", "top_k": 5},
+                    "config": {"knowledge_base": "langchain_docs", "top_k": 5},
                     "position": {"x": 100, "y": 150},
                 },
                 "web_search_1": {
@@ -71,7 +71,7 @@ TEMPLATES: dict[str, dict] = {
                 },
                 "retriever_1": {
                     "type": "retriever",
-                    "config": {"knowledge_base": "langchain-docs", "top_k": 5},
+                    "config": {"knowledge_base": "langchain_docs", "top_k": 5},
                     "position": {"x": 100, "y": 150},
                 },
                 "web_search_1": {
@@ -136,7 +136,7 @@ TEMPLATES: dict[str, dict] = {
                 },
                 "retriever_1": {
                     "type": "retriever",
-                    "config": {"knowledge_base": "langchain-docs", "top_k": 5},
+                    "config": {"knowledge_base": "langchain_docs", "top_k": 5},
                     "position": {"x": 100, "y": 150},
                 },
                 "web_search_1": {
@@ -216,7 +216,7 @@ TEMPLATES: dict[str, dict] = {
                 },
                 "retriever_1": {
                     "type": "retriever",
-                    "config": {"knowledge_base": "langchain-docs", "top_k": 5},
+                    "config": {"knowledge_base": "langchain_docs", "top_k": 5},
                     "position": {"x": 100, "y": 150},
                 },
                 "web_search_1": {

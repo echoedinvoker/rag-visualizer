@@ -42,7 +42,7 @@ const NODE_TYPES: NodeTypeInfo[] = [
     icon: '📚',
     color: '#0984E3',
     configSchema: [
-      { key: 'knowledge_base', label: 'config.knowledge_base', type: 'select', options: [{ label: 'LangChain Docs', value: 'langchain-docs' }], default: 'langchain-docs' },
+      { key: 'knowledge_base', label: 'config.knowledge_base', type: 'select', options: [{ label: 'LangChain Docs', value: 'langchain_docs' }], default: 'langchain_docs' },
       { key: 'top_k', label: 'config.top_k', type: 'number', default: 5 },
     ],
     allowedSources: ['router', 'query_rewriter', 'relevance_checker'],
