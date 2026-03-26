@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Handle, Position } from '@vue-flow/core'
-import type { NodeData } from '~/composables/useGraphState'
+import type { NodeData } from '~/types/graph'
 
 const props = defineProps<{
   data: NodeData
@@ -23,7 +23,6 @@ const statusStyles = computed(() => {
         background: c + '12',
         outlineColor: c,
         outlineStyle: 'solid',
-        /* 陰影分層: running 節點有帶色 glow */
         boxShadow: `0 1px 2px ${c}15, 0 4px 12px ${c}12`,
       }
     case 'completed':
@@ -42,7 +41,6 @@ const statusStyles = computed(() => {
       }
     default:
       return {
-        /* 飽和中性色: idle 用 slate 色系 */
         background: 'var(--slate-50)',
         outlineColor: 'var(--slate-200)',
         outlineStyle: 'dashed',
@@ -59,6 +57,7 @@ const detailText = computed(() => {
   if (d.passed !== undefined) return `${d.passed}✓ ${d.failed}✗`
   if (d.grounded !== undefined) return d.grounded ? 'Grounded' : 'Not grounded'
   if (d.useful !== undefined) return d.useful ? 'Useful' : 'Not useful'
+  if (d.rewritten) return `→ ${d.rewritten.substring(0, 30)}...`
   return ''
 })
 </script>
@@ -80,9 +79,8 @@ const detailText = computed(() => {
     <Handle type="target" :position="Position.Top" />
 
     <div class="node-header">
-      <!-- 質感一致性: CSS dot 取代 emoji icon -->
+      <span class="node-icon">{{ data.icon || '' }}</span>
       <span class="status-dot" :class="data.status" />
-      <!-- 排版微調: 收緊字距 -->
       <span class="node-label">{{ t(data.i18nKey) }}</span>
     </div>
 
@@ -120,7 +118,7 @@ const detailText = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: -0.01em;
@@ -128,7 +126,11 @@ const detailText = computed(() => {
   color: var(--slate-700);
 }
 
-/* CSS status dot — no emoji (質感一致性) */
+.node-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
 .status-dot {
   width: 7px;
   height: 7px;
@@ -155,7 +157,6 @@ const detailText = computed(() => {
 .node-detail {
   margin-top: 2px;
   font-size: 10px;
-  /* 視覺層級: detail 用 secondary 色退後 */
   color: var(--color-text-secondary);
   font-weight: 600;
   letter-spacing: 0.01em;

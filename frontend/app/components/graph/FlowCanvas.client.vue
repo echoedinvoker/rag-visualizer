@@ -2,29 +2,47 @@
 import { VueFlow } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 import { Controls } from '@vue-flow/controls'
+import { MiniMap } from '@vue-flow/minimap'
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/core/dist/theme-default.css'
 import '@vue-flow/controls/dist/style.css'
+import '@vue-flow/minimap/dist/style.css'
 import CustomNode from './nodes/CustomNode.vue'
+import { FLOW_ID } from '~/composables/useGraphEditor'
 
 import type { Node, Edge } from '@vue-flow/core'
 
-defineProps<{
+const props = defineProps<{
   nodes: Node[]
   edges: Edge[]
+  mode?: 'editing' | 'running'
 }>()
+
+const isEditing = computed(() => props.mode !== 'running')
+
+const { onDragOver, onDrop, isValidConnection, onConnect } = useGraphEditor()
 </script>
 
 <template>
-  <div class="flow-wrapper">
+  <div
+    class="flow-wrapper"
+    @dragover="isEditing ? onDragOver($event) : undefined"
+    @drop="isEditing ? onDrop($event) : undefined"
+  >
     <VueFlow
+      :id="FLOW_ID"
       :nodes="nodes"
       :edges="edges"
       :default-viewport="{ x: 20, y: 10, zoom: 0.78 }"
-      :nodes-draggable="false"
+      :nodes-draggable="isEditing"
+      :nodes-connectable="isEditing"
+      :elements-selectable="isEditing"
+      :delete-key-code="isEditing ? 'Backspace' : null"
       :pan-on-drag="true"
       :zoom-on-scroll="true"
+      :is-valid-connection="isValidConnection"
       fit-view-on-init
+      @connect="onConnect"
     >
       <template #node-custom="nodeProps">
         <CustomNode :data="nodeProps.data" />
@@ -32,6 +50,7 @@ defineProps<{
 
       <Background :gap="24" :size="1" pattern-color="#e8e8f0" />
       <Controls position="bottom-left" :show-fit-view="true" :show-interactive="false" />
+      <MiniMap position="bottom-right" />
     </VueFlow>
   </div>
 </template>
@@ -39,8 +58,8 @@ defineProps<{
 <style scoped>
 .flow-wrapper {
   width: 100%;
-  height: 480px;
-  border-radius: var(--radius, 12px);
+  height: 520px;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   overflow: hidden;
 }
 
@@ -64,5 +83,12 @@ defineProps<{
 
 @keyframes edge-flow {
   to { stroke-dashoffset: -10; }
+}
+
+/* MiniMap styling */
+.flow-wrapper :deep(.vue-flow__minimap) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 </style>

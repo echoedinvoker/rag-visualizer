@@ -1,13 +1,25 @@
 {
   "app": {
-    "title": "RAG Visualizer",
-    "subtitle": "即時視覺化 Agentic RAG 決策流程"
+    "title": "RAG Pipeline Studio",
+    "subtitle": "即時組裝與視覺化 RAG Pipeline"
   },
   "research": {
     "placeholder": "輸入研究主題...",
-    "start": "開始研究",
-    "abort": "中斷研究",
+    "start": "執行 Pipeline",
+    "abort": "中斷",
     "examples": "快速範例："
+  },
+  "sidebar": {
+    "title": "Node 類型"
+  },
+  "category": {
+    "entry": "入口",
+    "retrieval": "檢索",
+    "filter": "篩選",
+    "generation": "生成",
+    "quality": "品質",
+    "output": "輸出",
+    "transform": "加工"
   },
   "graph": {
     "router": "路由器",
@@ -17,10 +29,38 @@
     "generator": "生成器",
     "hallucination_checker": "幻覺檢查",
     "relevance_checker": "相關性檢查",
-    "report_builder": "報告產出"
+    "report_builder": "報告產出",
+    "summarizer": "摘要器",
+    "query_rewriter": "查詢改寫"
+  },
+  "toolbar": {
+    "templates": "模板",
+    "auto_layout": "自動排列",
+    "export": "匯出 JSON",
+    "import": "匯入 JSON",
+    "clear": "清除"
+  },
+  "config": {
+    "model": "模型",
+    "knowledge_base": "知識庫",
+    "top_k": "檢索筆數",
+    "max_results": "最大結果數",
+    "temperature": "溫度",
+    "max_retries": "最大重試",
+    "max_length": "最大長度",
+    "no_settings": "無可設定參數",
+    "routing": "條件路由",
+    "router_field": "State 欄位",
+    "select_target": "選擇目標節點..."
+  },
+  "gallery": {
+    "title": "Pipeline 模板",
+    "subtitle": "選擇一個模板快速開始。會取代目前畫布上的內容。"
   },
   "log": {
     "title": "執行日誌",
+    "graph_started": "Pipeline 啟動（{node_count} 個節點）",
+    "graph_complete": "Pipeline 完成",
     "routing_vector": "路由到向量搜尋",
     "routing_web": "路由到網路搜尋",
     "retrieving": "檢索到 {count} 篇文件",
@@ -35,9 +75,16 @@
     "web_searching": "正在搜尋網路...",
     "web_found": "找到 {count} 筆結果",
     "report_done": "報告產出完成",
+    "summary_done": "摘要完成",
+    "query_rewritten": "查詢已改寫",
     "retry": "重試第 {attempt} 次：{reason}",
     "disconnected": "連線中斷",
     "reconnect": "重新連線"
+  },
+  "upload": {
+    "title": "知識庫",
+    "button": "上傳文件",
+    "no_files": "尚未上傳文件。支援 PDF、TXT、MD 格式。"
   },
   "report": {
     "title": "研究報告",

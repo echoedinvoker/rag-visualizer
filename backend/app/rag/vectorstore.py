@@ -6,7 +6,7 @@ from langchain_openai import OpenAIEmbeddings
 from app.config import CHROMA_PERSIST_DIR, get_openai_api_key
 
 
-def get_vectorstore() -> Chroma:
+def get_vectorstore(collection_name: str = "langchain_docs") -> Chroma:
     client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
     embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small",
@@ -14,10 +14,25 @@ def get_vectorstore() -> Chroma:
     )
     return Chroma(
         client=client,
-        collection_name="langchain_docs",
+        collection_name=collection_name,
         embedding_function=embeddings,
     )
 
 
-def get_retriever(k: int = 5):
-    return get_vectorstore().as_retriever(search_kwargs={"k": k})
+def get_retriever(k: int = 5, collection_name: str = "langchain_docs"):
+    return get_vectorstore(collection_name).as_retriever(search_kwargs={"k": k})
+
+
+def delete_collection(collection_name: str):
+    """Delete a Chroma collection by name."""
+    client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
+    try:
+        client.delete_collection(collection_name)
+    except ValueError:
+        pass  # Collection doesn't exist
+
+
+def list_collections() -> list[str]:
+    """List all Chroma collection names."""
+    client = chromadb.PersistentClient(path=CHROMA_PERSIST_DIR)
+    return [c.name for c in client.list_collections()]

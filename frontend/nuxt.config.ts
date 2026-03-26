@@ -22,7 +22,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'RAG Visualizer',
+      title: 'RAG Pipeline Studio',
       link: [
         {
           rel: 'stylesheet',

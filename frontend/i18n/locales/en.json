@@ -1,13 +1,25 @@
 {
   "app": {
-    "title": "RAG Visualizer",
-    "subtitle": "Real-time Agentic RAG Decision Visualization"
+    "title": "RAG Pipeline Studio",
+    "subtitle": "Build & Visualize RAG Pipelines in Real-time"
   },
   "research": {
     "placeholder": "Enter a research topic...",
-    "start": "Start Research",
+    "start": "Run Pipeline",
     "abort": "Abort",
     "examples": "Quick examples:"
+  },
+  "sidebar": {
+    "title": "Node Types"
+  },
+  "category": {
+    "entry": "Entry",
+    "retrieval": "Retrieval",
+    "filter": "Filter",
+    "generation": "Generation",
+    "quality": "Quality",
+    "output": "Output",
+    "transform": "Transform"
   },
   "graph": {
     "router": "Router",
@@ -17,10 +29,38 @@
     "generator": "Generator",
     "hallucination_checker": "Hallucination Check",
     "relevance_checker": "Relevance Check",
-    "report_builder": "Report Builder"
+    "report_builder": "Report Builder",
+    "summarizer": "Summarizer",
+    "query_rewriter": "Query Rewriter"
+  },
+  "toolbar": {
+    "templates": "Templates",
+    "auto_layout": "Auto Layout",
+    "export": "Export JSON",
+    "import": "Import JSON",
+    "clear": "Clear"
+  },
+  "config": {
+    "model": "Model",
+    "knowledge_base": "Knowledge Base",
+    "top_k": "Top K",
+    "max_results": "Max Results",
+    "temperature": "Temperature",
+    "max_retries": "Max Retries",
+    "max_length": "Max Length",
+    "no_settings": "No configurable settings",
+    "routing": "Conditional Routing",
+    "router_field": "State field",
+    "select_target": "Select target node..."
+  },
+  "gallery": {
+    "title": "Pipeline Templates",
+    "subtitle": "Choose a template to get started quickly. It will replace the current canvas."
   },
   "log": {
     "title": "Execution Log",
+    "graph_started": "Pipeline started ({node_count} nodes)",
+    "graph_complete": "Pipeline complete",
     "routing_vector": "Routed to vector store",
     "routing_web": "Routed to web search",
     "retrieving": "Retrieved {count} documents",
@@ -35,9 +75,16 @@
     "web_searching": "Searching the web...",
     "web_found": "Found {count} results",
     "report_done": "Report generated",
+    "summary_done": "Summary generated",
+    "query_rewritten": "Query rewritten",
     "retry": "Retry #{attempt}: {reason}",
     "disconnected": "Connection lost",
     "reconnect": "Reconnect"
+  },
+  "upload": {
+    "title": "Knowledge Base",
+    "button": "Upload File",
+    "no_files": "No files uploaded. Upload PDF, TXT, or MD files."
   },
   "report": {
     "title": "Research Report",

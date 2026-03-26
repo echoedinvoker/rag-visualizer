@@ -30,6 +30,15 @@ Given a user question and an LLM generation, determine if the generation
 actually addresses and answers the question.
 Give a binary 'yes' or 'no' score. 'yes' means the answer is useful."""
 
+SUMMARIZER_SYSTEM = """\
+You are a document summarizer. Given a set of documents, produce a concise summary
+that captures the key information. Keep it under {max_length} words."""
+
+QUERY_REWRITER_SYSTEM = """\
+You are a query rewriter. Given a user question, rewrite it to be more specific
+and better suited for document retrieval. Keep the same intent but improve clarity.
+Output ONLY the rewritten question, nothing else."""
+
 REPORT_SYSTEM = """\
 You are a report writer. Given a research answer and its sources, format it as
 a well-structured Markdown report with:
