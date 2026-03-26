@@ -75,7 +75,7 @@ const NODE_TYPES: NodeTypeInfo[] = [
     ],
     allowedSources: ['retriever'],
     allowedTargets: ['generator', 'web_search'],
-    outputFields: ['graded_documents', 'grader_fallback'],
+    outputFields: ['grader_fallback', 'graded_documents'],
   },
 
   // --- Generation ---

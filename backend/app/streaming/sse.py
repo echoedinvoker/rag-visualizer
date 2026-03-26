@@ -1,5 +1,6 @@
 """SSE response formatting and graph streaming."""
 import json
+import logging
 import time
 
 from app.graph.builder import build_graph, build_graph_from_config
@@ -94,9 +95,13 @@ async def graph_run_event_generator(config: dict, question: str, language: str =
         }, ensure_ascii=False)}
 
     except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        logging.getLogger(__name__).error(f"Graph execution error:\n{tb}")
         yield {"data": json.dumps({
             "event": "graph_error",
             "node": getattr(e, "node", None),
             "message": str(e),
+            "traceback": tb,
             "timestamp": int(time.time()),
         }, ensure_ascii=False)}
