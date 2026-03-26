@@ -47,14 +47,20 @@ def make_field_router(field: str, mapping: dict[str, str]) -> Callable:
 
     def router(state: dict[str, Any]) -> str:
         value = state.get(field)
-        # Try exact match, then str conversion, then default
-        target = mapping.get(value) or mapping.get(str(value)) or mapping.get("default")
-        if target is None:
-            raise ValueError(
-                f"Router field '{field}' has value '{value}' "
-                f"not found in mapping {list(mapping.keys())}. "
-                f"Add a 'default' key to handle unexpected values."
-            )
-        return target
+        # Return the matching KEY (not the value) — LangGraph uses the
+        # mapping dict passed to add_conditional_edges to resolve the key
+        # to the actual target node.
+        if value in mapping:
+            return value
+        str_value = str(value)
+        if str_value in mapping:
+            return str_value
+        if "default" in mapping:
+            return "default"
+        raise ValueError(
+            f"Router field '{field}' has value '{value}' "
+            f"not found in mapping {list(mapping.keys())}. "
+            f"Add a 'default' key to handle unexpected values."
+        )
 
     return router
