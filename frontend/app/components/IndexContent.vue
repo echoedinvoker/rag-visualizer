@@ -49,9 +49,13 @@ const selectedNode = computed(() => {
   return nodes.value.find(n => n.id === selectedNodeId.value) || null
 })
 
-function onNodeClick(_event: any, node: any) {
+// Listen for node clicks via useVueFlow hook (shared flow ID)
+import { useVueFlow } from '@vue-flow/core'
+import { FLOW_ID } from '~/composables/useGraphEditor'
+const { onNodeClick: onNodeClickHook } = useVueFlow({ id: FLOW_ID })
+onNodeClickHook(({ node }) => {
   selectedNodeId.value = node.id
-}
+})
 
 function handleSearch(value: string) {
   if (!value.trim() || isRunning.value) return
@@ -137,7 +141,6 @@ function handleClear() {
             :nodes="nodes"
             :edges="edges"
             :mode="mode"
-            @node-click="onNodeClick"
           />
         </a-card>
 
